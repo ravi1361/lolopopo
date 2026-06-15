@@ -10,10 +10,20 @@ router.get("/", function(req,res){
 
 
 router.get("/checkban", function(req,res){
-  console.log(req.session);
-  res.send("check kiya hai console dekho");
-  
-})
+  if(req.session.ban === true){
+     res.send("you are banned");
+  }
+  else{
+    res.send("not banned");
+  }
+});
+
+router.get("/removeban", function(req,res){
+ req.session.destroy(function(err){
+if (err) throw err ;
+res.send("ban  removed");
+ });
+  });
 
 
 
