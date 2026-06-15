@@ -1,20 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-const userModel = require("./users");
 
 
 router.get("/", function(req,res){
+  req.session.ban = true ;
   res.render("index");
 })
 
 
-router.get("/delete", async function (req,res){
-  let deleteduser = await userModel.findOneAndDelete({
-    username : "harsh"
-  });
-  res.send(deleteduser);
-});
+router.get("/checkban", function(req,res){
+  console.log(req.session);
+  res.send("check kiya hai console dekho");
+  
+})
 
 
 
